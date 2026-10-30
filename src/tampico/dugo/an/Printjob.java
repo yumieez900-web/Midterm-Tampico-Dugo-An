@@ -372,7 +372,9 @@ public class Printjob extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCopiesActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
-        // TODO add your handling code here:
+     IdSearch window = new IdSearch(jobManager);
+
+    window.setVisible(true);
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed

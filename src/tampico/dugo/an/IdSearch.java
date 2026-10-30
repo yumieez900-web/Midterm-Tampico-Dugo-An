@@ -11,12 +11,27 @@ package tampico.dugo.an;
 public class IdSearch extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(IdSearch.class.getName());
-
+    private PrintJobManager jobManager;
+    private PrintJobClass foundJob;
     /**
      * Creates new form IdSearch
      */
-    public IdSearch() {
+    public IdSearch(PrintJobManager manager) {
         initComponents();
+        
+        jobManager = manager;
+
+        foundJob = null;
+
+        txtId.setEditable(false);
+        txtPrinter.setEditable(false);
+        txtSize.setEditable(false);
+        txtCopies.setEditable(false);
+        txtPages.setEditable(false);
+        txtSides.setEditable(false);
+        txtColor.setEditable(false);
+
+        
     }
 
     /**
@@ -45,7 +60,7 @@ public class IdSearch extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtSides = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtPaper = new javax.swing.JTextField();
+        txtSize = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -62,6 +77,7 @@ public class IdSearch extends javax.swing.JFrame {
         txtInputId.addActionListener(this::txtInputIdActionPerformed);
 
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(this::btnSubmitActionPerformed);
 
         jLabel3.setText("Printer:");
 
@@ -83,7 +99,7 @@ public class IdSearch extends javax.swing.JFrame {
 
         jLabel7.setText("Sides:");
 
-        txtPaper.setEditable(false);
+        txtSize.setEditable(false);
 
         jLabel8.setText("Paper:");
 
@@ -124,7 +140,7 @@ public class IdSearch extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnX, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnX, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -160,7 +176,7 @@ public class IdSearch extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jLabel8)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtPaper, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -200,7 +216,7 @@ public class IdSearch extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txtPaper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,6 +254,30 @@ public class IdSearch extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+       int searchId = Integer.parseInt(txtInputId.getText());
+
+    foundJob = jobManager.searchJob(searchId);
+
+    if (foundJob != null) {
+
+        txtId.setText(String.valueOf(foundJob.getId()));
+        txtPrinter.setText(foundJob.getPrinter());
+        txtSize.setText(foundJob.getSize());
+        txtCopies.setText(String.valueOf(foundJob.getCopies()));
+
+        if (foundJob.getPages() == -1) {
+            txtPages.setText("All");
+        } else {
+            txtPages.setText(String.valueOf(foundJob.getPages()));
+        }
+
+        txtSides.setText(foundJob.getSides());
+        txtColor.setText(foundJob.getColor());
+
+    } 
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -260,7 +300,10 @@ public class IdSearch extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new IdSearch().setVisible(true));
+java.awt.EventQueue.invokeLater(() -> {
+    PrintJobManager manager = new PrintJobManager();
+    new IdSearch(manager).setVisible(true);
+});
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -285,8 +328,8 @@ public class IdSearch extends javax.swing.JFrame {
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtInputId;
     private javax.swing.JTextField txtPages;
-    private javax.swing.JTextField txtPaper;
     private javax.swing.JTextField txtPrinter;
     private javax.swing.JTextField txtSides;
+    private javax.swing.JTextField txtSize;
     // End of variables declaration//GEN-END:variables
 }

@@ -60,7 +60,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" pref="62" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnX" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="btnX" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -104,7 +104,7 @@
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="txtPaper" min="-2" pref="112" max="-2" attributes="0"/>
+                                          <Component id="txtSize" min="-2" pref="112" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -157,7 +157,7 @@
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtId" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPaper" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtSize" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -189,6 +189,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Submit"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>
@@ -244,7 +247,7 @@
             <Property name="text" type="java.lang.String" value="Sides:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtPaper">
+        <Component class="javax.swing.JTextField" name="txtSize">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
