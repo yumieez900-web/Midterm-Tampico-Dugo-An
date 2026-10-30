@@ -372,7 +372,7 @@ public class Printjob extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCopiesActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
-     IdSearch window = new IdSearch(jobManager);
+     IdSearch window = new IdSearch(jobManager, this);
 
     window.setVisible(true);
     }//GEN-LAST:event_btnFindActionPerformed
@@ -442,7 +442,30 @@ public class Printjob extends javax.swing.JFrame {
     nextJobId++;
         
     }//GEN-LAST:event_btnSubmitActionPerformed
+    
+    public void refreshTable() {
 
+    javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel) JobTable.getModel();
+
+    model.setRowCount(0);
+
+    for (int i = 0; i < jobManager.getJobCount(); i++) {
+
+        PrintJobClass job = jobManager.getJob(i);
+
+        model.addRow(new Object[]{
+            job.getId(),
+            job.getPrinter(),
+            job.getSize(),
+            job.getCopies(),
+            job.getPages() == -1 ? "All" : job.getPages(),
+            job.getSides(),
+            job.getColor()
+        });
+
+    }
+}
     private void rbColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbColorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbColorActionPerformed

@@ -13,13 +13,16 @@ public class IdSearch extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(IdSearch.class.getName());
     private PrintJobManager jobManager;
     private PrintJobClass foundJob;
+    private Printjob parentFrame;
     /**
      * Creates new form IdSearch
      */
-    public IdSearch(PrintJobManager manager) {
+    public IdSearch(PrintJobManager manager, Printjob parent) {
+
         initComponents();
-        
+
         jobManager = manager;
+        parentFrame = parent;
 
         foundJob = null;
 
@@ -31,7 +34,6 @@ public class IdSearch extends javax.swing.JFrame {
         txtSides.setEditable(false);
         txtColor.setEditable(false);
 
-        
     }
 
     /**
@@ -238,7 +240,14 @@ public class IdSearch extends javax.swing.JFrame {
     }//GEN-LAST:event_txtInputIdActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
-        // TODO add your handling code here:
+        if (foundJob != null) {
+
+        jobManager.deleteJob(foundJob.getId());
+        parentFrame.refreshTable();
+
+        this.dispose();
+
+    }
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -298,7 +307,8 @@ public class IdSearch extends javax.swing.JFrame {
         /* Create and display the form */
 java.awt.EventQueue.invokeLater(() -> {
     PrintJobManager manager = new PrintJobManager();
-    new IdSearch(manager).setVisible(true);
+    Printjob parent = new Printjob();
+    new IdSearch(manager, parent).setVisible(true);
 });
     }
 
