@@ -36,31 +36,31 @@ public class Printjob extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbPrinter = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnProcess = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbPaperSize = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rbColor = new javax.swing.JRadioButton();
+        rbBlackWhite = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        rbTwoSides = new javax.swing.JRadioButton();
+        rbOneSide = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtCustomPages = new javax.swing.JTextField();
+        txtCopies = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmbPages = new javax.swing.JComboBox<>();
         jSeparator5 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
+        btnFind = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        JobTable = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,46 +94,47 @@ public class Printjob extends javax.swing.JFrame {
         jLabel1.setText("Job Printer");
         jLabel1.setToolTipText("");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canon LB1600", "Hp LaserJet 4300", "Hp Laserjet 4200", " " }));
-        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
+        cmbPrinter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canon LB1600", "Hp LaserJet 4300", "Hp Laserjet 4200", " " }));
+        cmbPrinter.addActionListener(this::cmbPrinterActionPerformed);
 
         jLabel2.setText("Select printer");
 
         jLabel3.setText("Waiting jobs");
 
-        jButton2.setText("Process next job");
-        jButton2.setToolTipText("");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        btnProcess.setText("Process next job");
+        btnProcess.setToolTipText("");
+        btnProcess.addActionListener(this::btnProcessActionPerformed);
 
         jLabel4.setText("Paper size");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A4", "A3", "A0", "A1", "A2", " " }));
+        cmbPaperSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A4", "A3", "A0", "A1", "A2", " " }));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setText("Settings");
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton1.setText("Color");
-        jRadioButton1.addActionListener(this::jRadioButton1ActionPerformed);
+        buttonGroup1.add(rbColor);
+        rbColor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbColor.setText("Color");
+        rbColor.addActionListener(this::rbColorActionPerformed);
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton2.setText("Black and white");
-        jRadioButton2.addActionListener(this::jRadioButton2ActionPerformed);
+        buttonGroup1.add(rbBlackWhite);
+        rbBlackWhite.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbBlackWhite.setText("Black and white");
+        rbBlackWhite.addActionListener(this::rbBlackWhiteActionPerformed);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setText("Color");
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton3.setText("Two sides");
+        buttonGroup1.add(rbTwoSides);
+        rbTwoSides.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbTwoSides.setText("Two sides");
 
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jRadioButton4.setText("One side");
+        buttonGroup1.add(rbOneSide);
+        rbOneSide.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbOneSide.setSelected(true);
+        rbOneSide.setText("One side");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setText("Sides");
@@ -142,23 +143,23 @@ public class Printjob extends javax.swing.JFrame {
 
         jLabel9.setText("Number of pages");
 
-        jTextField1.setText("Enter number of pages here...");
-        jTextField1.addActionListener(this::jTextField1ActionPerformed);
+        txtCustomPages.setText("Enter number of pages here...");
+        txtCustomPages.addActionListener(this::txtCustomPagesActionPerformed);
 
-        jTextField2.setText("1");
-        jTextField2.addActionListener(this::jTextField2ActionPerformed);
+        txtCopies.setText("1");
+        txtCopies.addActionListener(this::txtCopiesActionPerformed);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Custom", " " }));
-        jComboBox3.addActionListener(this::jComboBox3ActionPerformed);
+        cmbPages.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Custom", " " }));
+        cmbPages.addActionListener(this::cmbPagesActionPerformed);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jButton1.setText("Add print job");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnSubmit.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        btnSubmit.setText("Add print job");
+        btnSubmit.addActionListener(this::btnSubmitActionPerformed);
 
-        jButton4.setText("Find job by id");
-        jButton4.addActionListener(this::jButton4ActionPerformed);
+        btnFind.setText("Find job by id");
+        btnFind.addActionListener(this::btnFindActionPerformed);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        JobTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -181,26 +182,26 @@ public class Printjob extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable3);
-        if (jTable3.getColumnModel().getColumnCount() > 0) {
-            jTable3.getColumnModel().getColumn(0).setMinWidth(40);
-            jTable3.getColumnModel().getColumn(0).setPreferredWidth(40);
-            jTable3.getColumnModel().getColumn(0).setMaxWidth(50);
-            jTable3.getColumnModel().getColumn(2).setMinWidth(40);
-            jTable3.getColumnModel().getColumn(2).setPreferredWidth(40);
-            jTable3.getColumnModel().getColumn(2).setMaxWidth(50);
-            jTable3.getColumnModel().getColumn(3).setMinWidth(50);
-            jTable3.getColumnModel().getColumn(3).setPreferredWidth(50);
-            jTable3.getColumnModel().getColumn(3).setMaxWidth(60);
-            jTable3.getColumnModel().getColumn(4).setMinWidth(40);
-            jTable3.getColumnModel().getColumn(4).setPreferredWidth(40);
-            jTable3.getColumnModel().getColumn(4).setMaxWidth(50);
-            jTable3.getColumnModel().getColumn(5).setMinWidth(40);
-            jTable3.getColumnModel().getColumn(5).setPreferredWidth(40);
-            jTable3.getColumnModel().getColumn(5).setMaxWidth(50);
-            jTable3.getColumnModel().getColumn(6).setMinWidth(40);
-            jTable3.getColumnModel().getColumn(6).setPreferredWidth(40);
-            jTable3.getColumnModel().getColumn(6).setMaxWidth(50);
+        jScrollPane4.setViewportView(JobTable);
+        if (JobTable.getColumnModel().getColumnCount() > 0) {
+            JobTable.getColumnModel().getColumn(0).setMinWidth(40);
+            JobTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+            JobTable.getColumnModel().getColumn(0).setMaxWidth(50);
+            JobTable.getColumnModel().getColumn(2).setMinWidth(40);
+            JobTable.getColumnModel().getColumn(2).setPreferredWidth(40);
+            JobTable.getColumnModel().getColumn(2).setMaxWidth(50);
+            JobTable.getColumnModel().getColumn(3).setMinWidth(50);
+            JobTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+            JobTable.getColumnModel().getColumn(3).setMaxWidth(60);
+            JobTable.getColumnModel().getColumn(4).setMinWidth(40);
+            JobTable.getColumnModel().getColumn(4).setPreferredWidth(40);
+            JobTable.getColumnModel().getColumn(4).setMaxWidth(50);
+            JobTable.getColumnModel().getColumn(5).setMinWidth(40);
+            JobTable.getColumnModel().getColumn(5).setPreferredWidth(40);
+            JobTable.getColumnModel().getColumn(5).setMaxWidth(50);
+            JobTable.getColumnModel().getColumn(6).setMinWidth(40);
+            JobTable.getColumnModel().getColumn(6).setPreferredWidth(40);
+            JobTable.getColumnModel().getColumn(6).setMaxWidth(50);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -210,10 +211,10 @@ public class Printjob extends javax.swing.JFrame {
             .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169))
+                .addComponent(btnFind, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(156, 156, 156))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -224,12 +225,12 @@ public class Printjob extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel8)
                                 .addComponent(jLabel9)
-                                .addComponent(jTextField2)
-                                .addComponent(jTextField1)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtCopies)
+                                .addComponent(txtCustomPages)
+                                .addComponent(cmbPaperSize, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmbPrinter, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmbPages, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5))
                         .addGap(20, 20, 20)
                         .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,19 +240,19 @@ public class Printjob extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rbOneSide, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(rbTwoSides, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rbBlackWhite, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(rbColor, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(52, 52, 52))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -277,8 +278,8 @@ public class Printjob extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
+                    .addComponent(btnProcess)
+                    .addComponent(btnFind))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,39 +290,39 @@ public class Printjob extends javax.swing.JFrame {
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(rbColor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rbBlackWhite, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jRadioButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(rbTwoSides, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rbOneSide, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)
                                 .addGap(8, 8, 8)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbPrinter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(15, 15, 15)
                                 .addComponent(jLabel4)
                                 .addGap(6, 6, 6)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbPaperSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCopies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel9)
                                 .addGap(9, 9, 9)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbPages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtCustomPages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -348,41 +349,42 @@ public class Printjob extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void rbBlackWhiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBlackWhiteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_rbBlackWhiteActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnProcessActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmbPrinterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPrinterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmbPrinterActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtCopiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCopiesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtCopiesActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnFindActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rbColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbColorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rbColorActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void cmbPagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPagesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_cmbPagesActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtCustomPagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomPagesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtCustomPagesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -410,13 +412,14 @@ public class Printjob extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JobTable;
+    private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnProcess;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> cmbPages;
+    private javax.swing.JComboBox<String> cmbPaperSize;
+    private javax.swing.JComboBox<String> cmbPrinter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -427,10 +430,6 @@ public class Printjob extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -440,8 +439,11 @@ public class Printjob extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JRadioButton rbBlackWhite;
+    private javax.swing.JRadioButton rbColor;
+    private javax.swing.JRadioButton rbOneSide;
+    private javax.swing.JRadioButton rbTwoSides;
+    private javax.swing.JTextField txtCopies;
+    private javax.swing.JTextField txtCustomPages;
     // End of variables declaration//GEN-END:variables
 }
