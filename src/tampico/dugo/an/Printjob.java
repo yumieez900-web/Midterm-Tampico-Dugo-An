@@ -12,6 +12,9 @@ public class Printjob extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Printjob.class.getName());
 
+    private PrintJobManager jobManager = new PrintJobManager();
+
+    private int nextJobId = 1;
     /**
      * Creates new form Printjob
      */
@@ -146,6 +149,7 @@ public class Printjob extends javax.swing.JFrame {
 
         jLabel9.setText("Number of pages");
 
+        txtCustomPages.setText("1");
         txtCustomPages.setToolTipText("Enter number of pages here...");
         txtCustomPages.addActionListener(this::txtCustomPagesActionPerformed);
 
@@ -372,7 +376,57 @@ public class Printjob extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        
+        // Get printer
+    String printer = cmbPrinter.getSelectedItem().toString();   
+
+        // Get paper size
+    String size = cmbPaperSize.getSelectedItem().toString();
+
+        // Get number of copies
+    int copies = Integer.parseInt(txtCopies.getText());
+
+        // Get number of pages
+    int pages;
+
+    if (cmbPages.getSelectedItem().toString().equals("All")) {
+        pages = -1;
+    } else {
+        pages = Integer.parseInt(txtCustomPages.getText());
+    }
+
+         // Get color
+    String color;
+
+    if (rbBlackWhite.isSelected()) {
+        color = "Black and White";
+    } else {
+        color = "Color";
+    }
+
+        // Get sides
+    String sides;
+
+    if (rbOneSide.isSelected()) {
+        sides = "One Side";
+    } else {
+        sides = "Two Sides";
+    }
+
+        // Create print job object
+    PrintJobClass job = new PrintJobClass(
+            nextJobId,
+            printer,
+            size,
+            copies,
+            pages,
+            sides,
+            color
+    );
+
+        // Add object to manager
+    jobManager.addJob(job);
+
+    nextJobId++;
         
     }//GEN-LAST:event_btnSubmitActionPerformed
 
