@@ -17,8 +17,9 @@ public class Printjob extends javax.swing.JFrame {
      */
     public Printjob() {
         initComponents();
-    }
+        txtCustomPages.setVisible(false);
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,6 +34,7 @@ public class Printjob extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -121,17 +123,18 @@ public class Printjob extends javax.swing.JFrame {
 
         buttonGroup1.add(rbBlackWhite);
         rbBlackWhite.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        rbBlackWhite.setSelected(true);
         rbBlackWhite.setText("Black and white");
         rbBlackWhite.addActionListener(this::rbBlackWhiteActionPerformed);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setText("Color");
 
-        buttonGroup1.add(rbTwoSides);
+        buttonGroup2.add(rbTwoSides);
         rbTwoSides.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbTwoSides.setText("Two sides");
 
-        buttonGroup1.add(rbOneSide);
+        buttonGroup2.add(rbOneSide);
         rbOneSide.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rbOneSide.setSelected(true);
         rbOneSide.setText("One side");
@@ -143,7 +146,7 @@ public class Printjob extends javax.swing.JFrame {
 
         jLabel9.setText("Number of pages");
 
-        txtCustomPages.setText("Enter number of pages here...");
+        txtCustomPages.setToolTipText("Enter number of pages here...");
         txtCustomPages.addActionListener(this::txtCustomPagesActionPerformed);
 
         txtCopies.setText("1");
@@ -340,10 +343,9 @@ public class Printjob extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 28, Short.MAX_VALUE))
         );
 
         pack();
@@ -379,7 +381,20 @@ public class Printjob extends javax.swing.JFrame {
     }//GEN-LAST:event_rbColorActionPerformed
 
     private void cmbPagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPagesActionPerformed
-        // TODO add your handling code here:
+    Object selected = cmbPages.getSelectedItem();
+
+     if (selected != null && selected.toString().equals("Custom")) {
+
+         txtCustomPages.setVisible(true);
+
+     } else {
+         
+           txtCustomPages.setVisible(false);
+
+      }
+
+      txtCustomPages.getParent().revalidate();
+     txtCustomPages.getParent().repaint();
     }//GEN-LAST:event_cmbPagesActionPerformed
 
     private void txtCustomPagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomPagesActionPerformed
@@ -417,6 +432,7 @@ public class Printjob extends javax.swing.JFrame {
     private javax.swing.JButton btnProcess;
     private javax.swing.JButton btnSubmit;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cmbPages;
     private javax.swing.JComboBox<String> cmbPaperSize;
     private javax.swing.JComboBox<String> cmbPrinter;
