@@ -42,5 +42,26 @@ public class PrintJobManager {
     return null;
 
 }
+    
+    public int getJobCount() {
 
+    return jobCount;
+
+}
+    
+public PrintJobClass searchJob(int id) {
+
+    for (int i = 0; i < jobCount; i++) {
+
+        if (jobs[i].getId() == id) {
+
+            return jobs[i];
+
+        }
+    }
+
+    return null;
+}
+    
+    
 }
