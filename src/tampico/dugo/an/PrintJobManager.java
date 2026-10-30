@@ -85,6 +85,28 @@ public void deleteJob(int id) {
     }
 }
 
+public PrintJobClass processNextJob() {
 
+    if (jobCount == 0) {
+        return null;
+    }
+
+    PrintJobClass processedJob = jobs[0];
+
+
+    for (int i = 0; i < jobCount - 1; i++) {
+
+        jobs[i] = jobs[i + 1];
+
+    }
+
+    // Clear the last occupied position
+    jobs[jobCount - 1] = null;
+
+    // Decrease the number of jobs
+    jobCount--;
+
+    return processedJob;
+}
     
 }

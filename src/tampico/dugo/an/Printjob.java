@@ -360,7 +360,13 @@ public class Printjob extends javax.swing.JFrame {
     }//GEN-LAST:event_rbBlackWhiteActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
-        // TODO add your handling code here:
+    PrintJobClass processedJob = jobManager.processNextJob();
+
+    if (processedJob != null) {
+
+        refreshTable();
+
+    }
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void cmbPrinterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPrinterActionPerformed
