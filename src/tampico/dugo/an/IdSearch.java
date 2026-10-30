@@ -25,6 +25,8 @@ public class IdSearch extends javax.swing.JFrame {
         parentFrame = parent;
 
         foundJob = null;
+        
+        btnProcess.setEnabled(false);
 
         txtId.setEditable(false);
         txtPrinter.setEditable(false);
@@ -255,12 +257,50 @@ public class IdSearch extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-       int searchId = Integer.parseInt(txtInputId.getText());
+         // Get the ID input
+    String input = txtInputId.getText();
 
+    // Check if input is empty
+    if (input.trim().isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Please enter a Job ID.");
+
+        foundJob = null;
+        btnProcess.setEnabled(false);
+        return;
+    }
+
+    // Validate if input is a number
+    int searchId;
+
+    try {
+        searchId = Integer.parseInt(input);
+
+        // Check if ID is positive
+        if (searchId <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Job ID must be greater than 0.");
+
+            foundJob = null;
+            btnProcess.setEnabled(false);
+            return;
+        }
+
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Please enter a valid numeric Job ID.");
+
+        foundJob = null;
+        btnProcess.setEnabled(false);
+        return;
+    }
+
+    // Search for the job
     foundJob = jobManager.searchJob(searchId);
 
     if (foundJob != null) {
 
+        // Display job information
         txtId.setText(String.valueOf(foundJob.getId()));
         txtPrinter.setText(foundJob.getPrinter());
         txtSize.setText(foundJob.getSize());
@@ -275,11 +315,27 @@ public class IdSearch extends javax.swing.JFrame {
         txtSides.setText(foundJob.getSides());
         txtColor.setText(foundJob.getColor());
 
+        // Enable Process button
+        btnProcess.setEnabled(true);
+
     } else {
 
         javax.swing.JOptionPane.showMessageDialog(this,
                 "Print job not found.");
 
+        // Clear previous results
+        txtId.setText("");
+        txtPrinter.setText("");
+        txtSize.setText("");
+        txtCopies.setText("");
+        txtPages.setText("");
+        txtSides.setText("");
+        txtColor.setText("");
+
+        foundJob = null;
+
+        // Keep Process button disabled
+        btnProcess.setEnabled(false);
     }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
