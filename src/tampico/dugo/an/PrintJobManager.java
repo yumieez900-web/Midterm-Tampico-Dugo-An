@@ -63,5 +63,26 @@ public PrintJobClass searchJob(int id) {
     return null;
 }
     
+public void deleteJob(int id) {
+
+    for (int i = 0; i < jobCount; i++) {
+
+        if (jobs[i].getId() == id) {
+
+            for (int j = i; j < jobCount - 1; j++) {
+
+                jobs[j] = jobs[j + 1];
+
+            }
+
+            
+            jobs[jobCount - 1] = null;
+
+            jobCount--;
+
+            break;
+        }
+    }
+}
     
 }
