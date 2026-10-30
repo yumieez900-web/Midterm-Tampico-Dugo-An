@@ -503,17 +503,17 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="50" minWidth="40" prefWidth="40" resizable="true">
+                    <Column maxWidth="70" minWidth="60" prefWidth="60" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="50" minWidth="40" prefWidth="40" resizable="true">
+                    <Column maxWidth="80" minWidth="70" prefWidth="70" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="50" minWidth="40" prefWidth="40" resizable="true">
+                    <Column maxWidth="120" minWidth="100" prefWidth="100" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>

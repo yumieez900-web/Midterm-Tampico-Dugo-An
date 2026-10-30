@@ -200,15 +200,15 @@ public class Printjob extends javax.swing.JFrame {
             JobTable.getColumnModel().getColumn(3).setMinWidth(50);
             JobTable.getColumnModel().getColumn(3).setPreferredWidth(50);
             JobTable.getColumnModel().getColumn(3).setMaxWidth(60);
-            JobTable.getColumnModel().getColumn(4).setMinWidth(40);
-            JobTable.getColumnModel().getColumn(4).setPreferredWidth(40);
-            JobTable.getColumnModel().getColumn(4).setMaxWidth(50);
-            JobTable.getColumnModel().getColumn(5).setMinWidth(40);
-            JobTable.getColumnModel().getColumn(5).setPreferredWidth(40);
-            JobTable.getColumnModel().getColumn(5).setMaxWidth(50);
-            JobTable.getColumnModel().getColumn(6).setMinWidth(40);
-            JobTable.getColumnModel().getColumn(6).setPreferredWidth(40);
-            JobTable.getColumnModel().getColumn(6).setMaxWidth(50);
+            JobTable.getColumnModel().getColumn(4).setMinWidth(60);
+            JobTable.getColumnModel().getColumn(4).setPreferredWidth(60);
+            JobTable.getColumnModel().getColumn(4).setMaxWidth(70);
+            JobTable.getColumnModel().getColumn(5).setMinWidth(70);
+            JobTable.getColumnModel().getColumn(5).setPreferredWidth(70);
+            JobTable.getColumnModel().getColumn(5).setMaxWidth(80);
+            JobTable.getColumnModel().getColumn(6).setMinWidth(100);
+            JobTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+            JobTable.getColumnModel().getColumn(6).setMaxWidth(120);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -425,6 +425,17 @@ public class Printjob extends javax.swing.JFrame {
 
         // Add object to manager
     jobManager.addJob(job);
+    javax.swing.table.DefaultTableModel model =
+        (javax.swing.table.DefaultTableModel) JobTable.getModel();
+    model.addRow(new Object[]{
+    job.getId(),
+    job.getPrinter(),
+    job.getSize(),
+    job.getCopies(),
+    job.getPages() == -1 ? "All" : job.getPages(),
+    job.getSides(),
+    job.getColor()
+});
 
     nextJobId++;
         
