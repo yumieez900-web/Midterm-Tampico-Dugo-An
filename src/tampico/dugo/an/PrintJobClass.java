@@ -55,4 +55,6 @@ public String getSides() {
 public String getColor() {
     return color;
 }
+
+
 }

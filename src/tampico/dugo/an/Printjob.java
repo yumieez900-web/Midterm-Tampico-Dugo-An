@@ -99,7 +99,7 @@ public class Printjob extends javax.swing.JFrame {
         jLabel1.setText("Job Printer");
         jLabel1.setToolTipText("");
 
-        cmbPrinter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canon LB1600", "Hp LaserJet 4300", "Hp Laserjet 4200", " " }));
+        cmbPrinter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Canon LB1600", "Hp LaserJet 4300", "Hp Laserjet 4200" }));
         cmbPrinter.addActionListener(this::cmbPrinterActionPerformed);
 
         jLabel2.setText("Select printer");
@@ -112,7 +112,7 @@ public class Printjob extends javax.swing.JFrame {
 
         jLabel4.setText("Paper size");
 
-        cmbPaperSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A4", "A3", "A0", "A1", "A2", " " }));
+        cmbPaperSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A4", "A3", "A0", "A1", "A2" }));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setText("Settings");
@@ -156,7 +156,7 @@ public class Printjob extends javax.swing.JFrame {
         txtCopies.setText("1");
         txtCopies.addActionListener(this::txtCopiesActionPerformed);
 
-        cmbPages.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Custom", " " }));
+        cmbPages.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Custom" }));
         cmbPages.addActionListener(this::cmbPagesActionPerformed);
 
         btnSubmit.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -360,7 +360,13 @@ public class Printjob extends javax.swing.JFrame {
     }//GEN-LAST:event_rbBlackWhiteActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
-        // TODO add your handling code here:
+    PrintJobClass processedJob = jobManager.processNextJob();
+
+    if (processedJob != null) {
+
+        refreshTable();
+
+    }
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void cmbPrinterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPrinterActionPerformed
@@ -372,29 +378,88 @@ public class Printjob extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCopiesActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
-        // TODO add your handling code here:
+     IdSearch window = new IdSearch(jobManager, this);
+
+    window.setVisible(true);
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        // Get printer
-    String printer = cmbPrinter.getSelectedItem().toString();   
+    
+    // Validate printer
+    if (cmbPrinter.getSelectedItem() == null) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Please select a printer.");
+        return;
+    }
 
-        // Get paper size
-    String size = cmbPaperSize.getSelectedItem().toString();
+    // Validate paper size
+    if (cmbPaperSize.getSelectedItem() == null) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Please select a paper size.");
+        return;
+    }
 
-        // Get number of copies
-    int copies = Integer.parseInt(txtCopies.getText());
+    // Validate copies
+    int copies;
 
-        // Get number of pages
+    try {
+        copies = Integer.parseInt(txtCopies.getText());
+
+        if (copies <= 0) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Copies must be greater than 0.");
+            return;
+        }
+
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Please enter a valid number of copies.");
+        return;
+    }
+
+    // Validate pages
     int pages;
 
     if (cmbPages.getSelectedItem().toString().equals("All")) {
         pages = -1;
     } else {
-        pages = Integer.parseInt(txtCustomPages.getText());
+        try {
+            pages = Integer.parseInt(txtCustomPages.getText());
+
+            if (pages <= 0) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Pages must be greater than 0.");
+                return;
+            }
+
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Please enter a valid number of pages.");
+            return;
+        }
     }
 
-         // Get color
+    // Validate color
+    if (!rbBlackWhite.isSelected() && !rbColor.isSelected()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Please select a color option.");
+        return;
+    }
+
+    // Validate sides
+    if (!rbOneSide.isSelected() && !rbTwoSides.isSelected()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Please select a printing side option.");
+        return;
+    }
+
+    // Get printer
+    String printer = cmbPrinter.getSelectedItem().toString();
+
+    // Get paper size
+    String size = cmbPaperSize.getSelectedItem().toString();
+
+    // Get color
     String color;
 
     if (rbBlackWhite.isSelected()) {
@@ -403,7 +468,7 @@ public class Printjob extends javax.swing.JFrame {
         color = "Color";
     }
 
-        // Get sides
+    // Get sides
     String sides;
 
     if (rbOneSide.isSelected()) {
@@ -412,35 +477,57 @@ public class Printjob extends javax.swing.JFrame {
         sides = "Two Sides";
     }
 
-        // Create print job object
+    // Create print job object
     PrintJobClass job = new PrintJobClass(
-            nextJobId,
-            printer,
-            size,
-            copies,
-            pages,
-            sides,
-            color
+            nextJobId, printer, size, copies, pages, sides, color
     );
 
-        // Add object to manager
+    // Add object to manager
     jobManager.addJob(job);
+
+    // Add job to JTable
     javax.swing.table.DefaultTableModel model =
-        (javax.swing.table.DefaultTableModel) JobTable.getModel();
+            (javax.swing.table.DefaultTableModel) JobTable.getModel();
+
     model.addRow(new Object[]{
-    job.getId(),
-    job.getPrinter(),
-    job.getSize(),
-    job.getCopies(),
-    job.getPages() == -1 ? "All" : job.getPages(),
-    job.getSides(),
-    job.getColor()
-});
+        job.getId(),
+        job.getPrinter(),
+        job.getSize(),
+        job.getCopies(),
+        job.getPages() == -1 ? "All" : job.getPages(),
+        job.getSides(),
+        job.getColor()
+    });
 
     nextJobId++;
-        
-    }//GEN-LAST:event_btnSubmitActionPerformed
 
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Print job added successfully!");
+    }//GEN-LAST:event_btnSubmitActionPerformed
+    
+    public void refreshTable() {
+
+    javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel) JobTable.getModel();
+
+    model.setRowCount(0);
+
+    for (int i = 0; i < jobManager.getJobCount(); i++) {
+
+        PrintJobClass job = jobManager.getJob(i);
+
+        model.addRow(new Object[]{
+            job.getId(),
+            job.getPrinter(),
+            job.getSize(),
+            job.getCopies(),
+            job.getPages() == -1 ? "All" : job.getPages(),
+            job.getSides(),
+            job.getColor()
+        });
+
+    }
+}
     private void rbColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbColorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbColorActionPerformed
