@@ -4,10 +4,6 @@
  */
 package tampico.dugo.an;
 
-/**
- *
- * @author Саня
- */
 public class PrintJobManager {
 
     private PrintJobClass[] jobs;
@@ -100,10 +96,8 @@ public PrintJobClass processNextJob() {
 
     }
 
-    // Clear the last occupied position
     jobs[jobCount - 1] = null;
 
-    // Decrease the number of jobs
     jobCount--;
 
     return processedJob;

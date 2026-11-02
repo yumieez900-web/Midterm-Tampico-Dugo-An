@@ -4,10 +4,6 @@
  */
 package tampico.dugo.an;
 
-/**
- *
- * @author Саня
- */
 public class PrintJobClass {
     private int id;
     private String printer;
